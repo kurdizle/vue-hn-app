@@ -16,6 +16,8 @@
               <span>by </span>
               <b-link :to="`/user/${item.user}`">{{ item.user }}</b-link>
               <span> | </span>
+              <span>{{ item.time_ago }}</span>
+              <span> | </span>
               <span>{{ item.comments_count }} comments</span>
             </div>
           </b-list-group-item>
