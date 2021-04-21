@@ -20,4 +20,14 @@ function fetchAskDetail(id) {
   return axios.get(`${config.baseUrl}/item/${id}.json`);
 }
 
-export { fetchNewsList, fetchAskList, fetchJobsList, fetchAskDetail };
+function fetchUserDetail(id) {
+  return axios.get(`${config.baseUrl}/user/${id}.json`);
+}
+
+export {
+  fetchNewsList,
+  fetchAskList,
+  fetchJobsList,
+  fetchAskDetail,
+  fetchUserDetail,
+};

@@ -6,6 +6,7 @@ import {
   fetchAskList,
   fetchJobsList,
   fetchAskDetail,
+  fetchUserDetail,
 } from '../api';
 
 Vue.use(Vuex);
@@ -16,6 +17,7 @@ const store = new Vuex.Store({
     ask: [],
     jobs: [],
     askItem: {},
+    user: {},
   },
   mutations: {
     SET_NEWS(state, news) {
@@ -29,6 +31,9 @@ const store = new Vuex.Store({
     },
     SET_ITEM(state, askItem) {
       state.askItem = askItem;
+    },
+    SET_USER(state, user) {
+      state.user = user;
     },
   },
   actions: {
@@ -63,6 +68,15 @@ const store = new Vuex.Store({
       fetchAskDetail(id)
         .then((response) => {
           context.commit('SET_ITEM', response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    FETCH_USER(context, id) {
+      fetchUserDetail(id)
+        .then((response) => {
+          context.commit('SET_USER', response.data);
         })
         .catch((error) => {
           console.log(error);

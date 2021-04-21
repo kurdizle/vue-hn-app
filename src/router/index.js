@@ -5,6 +5,7 @@ import NewsComponent from '../components/NewsComponent.vue';
 import AskComponent from '../components/AskComponent.vue';
 import JobsComponent from '../components/JobsComponent.vue';
 import AskDetailComponent from '../components/AskDetailComponent.vue';
+import UserDetailComponent from '../components/UserDetailComponent.vue';
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,10 @@ const routes = [
   {
     path: '/ask/:id',
     component: AskDetailComponent,
+  },
+  {
+    path: '/user/:id',
+    component: UserDetailComponent,
   },
 ];
 
