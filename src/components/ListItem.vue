@@ -4,15 +4,17 @@
       <b-col>
         <b-list-group>
           <b-list-group-item v-for="item in listItems" :key="item.id">
+            <div class="points">
+              {{ item.points ? item.points : '-' }}
+            </div>
             <template v-if="item.domain">
               <a
                 :href="item.url"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="title"
+                >{{ item.title }}</a
               >
-                {{ item.title }}
-              </a>
             </template>
             <template v-else>
               <b-link :to="`/ask/${item.id}`" class="title">{{
@@ -75,17 +77,20 @@ export default {
 </script>
 
 <style>
-.title {
-  font-size: 18px;
+.points {
+  display: inline-block;
+  width: 50px;
+  color: #17a2b8;
 }
-
+.title {
+  font-size: 16px;
+}
 .subtitle {
   display: inline-block;
   padding-left: 10px;
   font-size: 14px;
   color: #aaa;
 }
-
 .subtitle a {
   color: #aaa;
   font-style: italic;
