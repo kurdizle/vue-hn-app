@@ -12,14 +12,21 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
+    redirect: '/news',
+  },
+  {
+    path: '/news',
+    name: 'news',
     component: NewsComponent,
   },
   {
     path: '/ask',
+    name: 'ask',
     component: AskComponent,
   },
   {
     path: '/jobs',
+    name: 'jobs',
     component: JobsComponent,
   },
   {

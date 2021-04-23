@@ -10,7 +10,7 @@
       <b-col cols="12">
         <span>karma: {{ user.karma }}</span>
       </b-col>
-      <b-col cols="12">
+      <b-col cols="12" v-if="user.about">
         <span>about: </span>
         <div v-html="user.about"></div>
       </b-col>
