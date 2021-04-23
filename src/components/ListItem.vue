@@ -2,6 +2,13 @@
   <b-container>
     <b-row>
       <b-col>
+        <loading
+          :active.sync="isLoading"
+          :is-full-page="fullPage"
+          loader="bars"
+          color="#17a2b8"
+          blur="null"
+        ></loading>
         <b-list-group>
           <b-list-group-item v-for="item in listItems" :key="item.id">
             <div class="points">
@@ -48,7 +55,19 @@
 </template>
 
 <script>
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
 export default {
+  data() {
+    return {
+      isLoading: false,
+      fullPage: true,
+    };
+  },
+  components: {
+    Loading,
+  },
   computed: {
     listItems() {
       const name = this.$route.name;
@@ -65,12 +84,24 @@ export default {
   },
   created() {
     const name = this.$route.name;
+
+    this.isLoading = true;
+
     if (name === 'news') {
-      this.$store.dispatch('FETCH_NEWS');
+      setTimeout(() => {
+        this.isLoading = false;
+        this.$store.dispatch('FETCH_NEWS');
+      }, 1000);
     } else if (name === 'ask') {
-      this.$store.dispatch('FETCH_ASK');
+      setTimeout(() => {
+        this.isLoading = false;
+        this.$store.dispatch('FETCH_ASK');
+      }, 1000);
     } else if (name === 'jobs') {
-      this.$store.dispatch('FETCH_JOBS');
+      setTimeout(() => {
+        this.isLoading = false;
+        this.$store.dispatch('FETCH_JOBS');
+      }, 1000);
     }
   },
 };
