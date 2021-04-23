@@ -1,12 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import NewsComponent from '../components/NewsComponent.vue';
-import AskComponent from '../components/AskComponent.vue';
-import JobsComponent from '../components/JobsComponent.vue';
-import AskDetailComponent from '../components/AskDetailComponent.vue';
-import UserDetailComponent from '../components/UserDetailComponent.vue';
-
 Vue.use(VueRouter);
 
 const routes = [
@@ -17,25 +11,25 @@ const routes = [
   {
     path: '/news',
     name: 'news',
-    component: NewsComponent,
+    component: () => import('../views/NewsView.vue'),
   },
   {
     path: '/ask',
     name: 'ask',
-    component: AskComponent,
+    component: () => import('../views/AskView.vue'),
   },
   {
     path: '/jobs',
     name: 'jobs',
-    component: JobsComponent,
+    component: () => import('../views/JobsView.vue'),
   },
   {
     path: '/ask/:id',
-    component: AskDetailComponent,
+    component: () => import('../views/AskDetailView.vue'),
   },
   {
     path: '/user/:id',
-    component: UserDetailComponent,
+    component: () => import('../views/UserDetailView.vue'),
   },
 ];
 
