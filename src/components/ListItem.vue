@@ -79,6 +79,9 @@ export default {
     Loading,
     InfiniteLoading,
   },
+  created() {
+    this.isLoading = true;
+  },
   methods: {
     infiniteHandler($state) {
       const pageName = this.$route.name;
@@ -93,6 +96,9 @@ export default {
           } else {
             $state.complete();
           }
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 500);
         })
         .catch((error) => {
           $state.error(error);
