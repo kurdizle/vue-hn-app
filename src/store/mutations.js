@@ -8,6 +8,12 @@ const mutations = {
   SET_JOBS(state, jobs) {
     state.jobs = jobs;
   },
+  SET_SHOW(state, show) {
+    state.show = show;
+  },
+  SET_NEWEST(state, newest) {
+    state.newest = newest;
+  },
   SET_ITEM(state, askItem) {
     state.askItem = askItem;
   },

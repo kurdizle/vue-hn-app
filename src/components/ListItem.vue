@@ -77,6 +77,10 @@ export default {
         return this.$store.state.ask;
       } else if (name === 'jobs') {
         return this.$store.state.jobs;
+      } else if (name === 'show') {
+        return this.$store.state.show;
+      } else if (name === 'newest') {
+        return this.$store.state.newest;
       } else {
         return null;
       }
@@ -101,6 +105,16 @@ export default {
       setTimeout(() => {
         this.isLoading = false;
         this.$store.dispatch('FETCH_JOBS');
+      }, 1000);
+    } else if (name === 'show') {
+      setTimeout(() => {
+        this.isLoading = false;
+        this.$store.dispatch('FETCH_SHOW');
+      }, 1000);
+    } else if (name === 'newest') {
+      setTimeout(() => {
+        this.isLoading = false;
+        this.$store.dispatch('FETCH_NEWEST');
       }, 1000);
     }
   },

@@ -24,6 +24,16 @@ const routes = [
     component: () => import('../views/JobsView.vue'),
   },
   {
+    path: '/show',
+    name: 'show',
+    component: () => import('../views/ShowView.vue'),
+  },
+  {
+    path: '/newest',
+    name: 'newest',
+    component: () => import('../views/NewestView.vue'),
+  },
+  {
     path: '/ask/:id',
     component: () => import('../views/AskDetailView.vue'),
   },

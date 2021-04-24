@@ -5,7 +5,9 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
+          <b-nav-item to="/newest">Newest</b-nav-item>
           <b-nav-item to="/news">News</b-nav-item>
+          <b-nav-item to="/show">Show</b-nav-item>
           <b-nav-item to="/ask">Ask</b-nav-item>
           <b-nav-item to="/jobs">Jobs</b-nav-item>
         </b-navbar-nav>

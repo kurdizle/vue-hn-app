@@ -2,6 +2,8 @@ import {
   fetchNewsList,
   fetchAskList,
   fetchJobsList,
+  fetchShowList,
+  fetchNewestList,
   fetchAskDetail,
   fetchUserDetail,
 } from '../api';
@@ -29,6 +31,24 @@ const actions = {
     fetchJobsList()
       .then((response) => {
         context.commit('SET_JOBS', response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  FETCH_SHOW(context) {
+    fetchShowList()
+      .then((response) => {
+        context.commit('SET_SHOW', response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  FETCH_NEWEST(context) {
+    fetchNewestList()
+      .then((response) => {
+        context.commit('SET_NEWEST', response.data);
       })
       .catch((error) => {
         console.log(error);
