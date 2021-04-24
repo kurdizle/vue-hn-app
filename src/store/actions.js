@@ -9,6 +9,7 @@ import {
 } from '../api';
 
 const actions = {
+  // List
   FETCH_NEWS(context) {
     fetchNewsList()
       .then((response) => {
@@ -54,6 +55,8 @@ const actions = {
         console.log(error);
       });
   },
+
+  // Detail
   FETCH_ASK_ITEM(context, id) {
     fetchAskDetail(id)
       .then((response) => {

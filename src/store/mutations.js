@@ -1,4 +1,5 @@
 const mutations = {
+  // List
   SET_NEWS(state, news) {
     state.news = news;
   },
@@ -14,6 +15,8 @@ const mutations = {
   SET_NEWEST(state, newest) {
     state.newest = newest;
   },
+
+  // Detail
   SET_ITEM(state, askItem) {
     state.askItem = askItem;
   },

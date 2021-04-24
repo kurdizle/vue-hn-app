@@ -1,5 +1,14 @@
 <template>
   <b-container>
+    <loading
+      :active.sync="isLoading"
+      :is-full-page="fullPage"
+      loader="bars"
+      color="#fff"
+      background-color="#17a2b8"
+      blur="null"
+      opacity="1"
+    ></loading>
     <b-row>
       <b-col cols="12">
         <span>user: {{ user.id }}</span>
@@ -20,13 +29,28 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
+  data() {
+    return {
+      isLoading: false,
+      fullPage: true,
+    };
+  },
+  components: {
+    Loading,
+  },
   computed: {
     ...mapState(['user']),
   },
   created() {
-    this.FETCH_USER(this.$route.params.id);
+    this.isLoading = true;
+    setTimeout(() => {
+      this.FETCH_USER(this.$route.params.id);
+      this.isLoading = false;
+    }, 500);
   },
   methods: {
     ...mapActions(['FETCH_USER']),

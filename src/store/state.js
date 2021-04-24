@@ -1,9 +1,12 @@
 const state = {
+  // List
   news: [],
   ask: [],
   jobs: [],
   show: [],
   newest: [],
+
+  // Detail
   askItem: {},
   user: {},
 };
