@@ -7,7 +7,7 @@
       color="#fff"
       background-color="#17a2b8"
       blur="null"
-      opacity="1"
+      :opacity="opacity"
     ></loading>
     <b-row>
       <b-col>
@@ -30,7 +30,7 @@
       <b-col cols="12">
         <h5>Comments</h5>
       </b-col>
-      <b-col cols="12">
+      <b-col cols="12" v-if="item.comments_count > 0">
         <ul>
           <li
             v-for="comment_l0 in item.comments"
@@ -51,6 +51,9 @@
           </li>
         </ul>
       </b-col>
+      <b-col v-else>
+        <p>No Comments.</p>
+      </b-col>
     </b-row>
   </b-container>
 </template>
@@ -65,6 +68,7 @@ export default {
     return {
       isLoading: false,
       fullPage: true,
+      opacity: 1,
     };
   },
   components: {
