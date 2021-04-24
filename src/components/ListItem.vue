@@ -1,16 +1,18 @@
 <template>
   <b-container>
+    <loading
+      :active.sync="isLoading"
+      :is-full-page="fullPage"
+      loader="bars"
+      color="#fff"
+      background-color="#17a2b8"
+      blur="null"
+      opacity="1"
+    ></loading>
     <b-row>
       <b-col>
-        <loading
-          :active.sync="isLoading"
-          :is-full-page="fullPage"
-          loader="bars"
-          color="#17a2b8"
-          blur="null"
-        ></loading>
         <b-list-group>
-          <b-list-group-item v-for="item in listItems" :key="item.id">
+          <b-list-group-item v-for="item in list" :key="item.id">
             <div class="points">
               {{ item.points ? item.points : '-' }}
             </div>
@@ -48,6 +50,10 @@
               </span>
             </div>
           </b-list-group-item>
+          <infinite-loading @infinite="infiniteHandler">
+            <template slot="no-more">No more</template>
+            <template slot="spinner">Loading...</template>
+          </infinite-loading>
         </b-list-group>
       </b-col>
     </b-row>
@@ -57,66 +63,41 @@
 <script>
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
+import InfiniteLoading from 'vue-infinite-loading';
+import { fetchList } from '../api';
 
 export default {
   data() {
     return {
       isLoading: false,
       fullPage: true,
+      page: 1,
+      list: [],
     };
   },
   components: {
     Loading,
+    InfiniteLoading,
   },
-  computed: {
-    listItems() {
-      const name = this.$route.name;
-      if (name === 'news') {
-        return this.$store.state.news;
-      } else if (name === 'ask') {
-        return this.$store.state.ask;
-      } else if (name === 'jobs') {
-        return this.$store.state.jobs;
-      } else if (name === 'show') {
-        return this.$store.state.show;
-      } else if (name === 'newest') {
-        return this.$store.state.newest;
-      } else {
-        return null;
-      }
+  methods: {
+    infiniteHandler($state) {
+      const pageName = this.$route.name;
+      const pageNumber = this.page;
+
+      fetchList(pageName, pageNumber)
+        .then((response) => {
+          if (response.data.length) {
+            this.page += 1;
+            this.list.push(...response.data);
+            $state.loaded();
+          } else {
+            $state.complete();
+          }
+        })
+        .catch((error) => {
+          $state.error(error);
+        });
     },
-  },
-  created() {
-    const name = this.$route.name;
-
-    this.isLoading = true;
-
-    if (name === 'news') {
-      setTimeout(() => {
-        this.isLoading = false;
-        this.$store.dispatch('FETCH_NEWS');
-      }, 1000);
-    } else if (name === 'ask') {
-      setTimeout(() => {
-        this.isLoading = false;
-        this.$store.dispatch('FETCH_ASK');
-      }, 1000);
-    } else if (name === 'jobs') {
-      setTimeout(() => {
-        this.isLoading = false;
-        this.$store.dispatch('FETCH_JOBS');
-      }, 1000);
-    } else if (name === 'show') {
-      setTimeout(() => {
-        this.isLoading = false;
-        this.$store.dispatch('FETCH_SHOW');
-      }, 1000);
-    } else if (name === 'newest') {
-      setTimeout(() => {
-        this.isLoading = false;
-        this.$store.dispatch('FETCH_NEWEST');
-      }, 1000);
-    }
   },
 };
 </script>
