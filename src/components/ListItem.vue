@@ -7,7 +7,7 @@
       color="#fff"
       background-color="#17a2b8"
       blur="null"
-      opacity="1"
+      :opacity="opacity"
     ></loading>
     <b-row>
       <b-col>
@@ -71,6 +71,7 @@ export default {
     return {
       isLoading: false,
       fullPage: true,
+      opacity: 1,
       page: 1,
       list: [],
     };
