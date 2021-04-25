@@ -21,7 +21,11 @@ export default {};
 </script>
 
 <style>
-.navbar-brand a {
+.navbar-brand a,
+.navbar-brand a:link,
+.navbar-brand a:active,
+.navbar-brand a:hover {
+  text-decoration: none;
   color: rgba(255, 255, 255, 1);
 }
 .navbar-dark .navbar-nav .nav-link.router-link-active,
