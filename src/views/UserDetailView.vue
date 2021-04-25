@@ -10,18 +10,25 @@
       :opacity="opacity"
     ></loading>
     <b-row>
-      <b-col cols="12">
-        <span>user: {{ user.id }}</span>
+      <b-col md="4">
+        <div class="user-box">
+          <div class="avatar">
+            <img :src="require('../assets/images/avatar.png')" alt="" />
+          </div>
+          <h4>{{ user.id }}</h4>
+          <div>
+            created <b>{{ user.created }}</b>
+          </div>
+          <div>
+            karma <b>{{ user.karma }}</b>
+          </div>
+        </div>
       </b-col>
-      <b-col cols="12">
-        <span>created: {{ user.created }}</span>
-      </b-col>
-      <b-col cols="12">
-        <span>karma: {{ user.karma }}</span>
-      </b-col>
-      <b-col cols="12" v-if="user.about">
-        <span>about: </span>
-        <div v-html="user.about"></div>
+      <b-col md="8" v-if="user.about">
+        <div class="user-box">
+          <div>about:</div>
+          <div v-html="user.about"></div>
+        </div>
       </b-col>
     </b-row>
   </b-container>
@@ -59,4 +66,19 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.user-box {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #dbdbdb;
+}
+
+.avatar {
+  width: 100px;
+  height: auto;
+}
+
+.avatar img {
+  width: 100%;
+}
+</style>

@@ -20,7 +20,7 @@ export default {
 
 <style>
 .container {
-  padding: 50px 0;
+  padding: 50px 0 115px;
 }
 
 html {
