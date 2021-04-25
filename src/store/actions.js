@@ -1,61 +1,6 @@
-import {
-  fetchNewsList,
-  fetchAskList,
-  fetchJobsList,
-  fetchShowList,
-  fetchNewestList,
-  fetchAskDetail,
-  fetchUserDetail,
-} from '../api';
+import { fetchAskDetail, fetchUserDetail } from '../api';
 
 const actions = {
-  // List
-  FETCH_NEWS(context) {
-    fetchNewsList()
-      .then((response) => {
-        context.commit('SET_NEWS', response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
-  FETCH_ASK(context) {
-    fetchAskList()
-      .then((response) => {
-        context.commit('SET_ASK', response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
-  FETCH_JOBS(context) {
-    fetchJobsList()
-      .then((response) => {
-        context.commit('SET_JOBS', response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
-  FETCH_SHOW(context) {
-    fetchShowList()
-      .then((response) => {
-        context.commit('SET_SHOW', response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
-  FETCH_NEWEST(context) {
-    fetchNewestList()
-      .then((response) => {
-        context.commit('SET_NEWEST', response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
-
   // Detail
   FETCH_ASK_ITEM(context, id) {
     fetchAskDetail(id)
